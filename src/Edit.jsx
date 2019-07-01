@@ -11,17 +11,19 @@ class Edit extends Component {
                 <div id="alert" className="alert alert-success">
                 <div className="form-group">
                      <label for="comment">Description:</label>
-                    <textarea className="form-control" rows="5" id="comment" placeholder="Describe the stuff you need done..."></textarea>
+                    <textarea className="update-todo-text form-control" rows="5" id="comment" placeholder="Describe the stuff you need done..."></textarea>
                 </div>
                 <div className="form-group">
                     <label for="edit-priority">Priority:</label>
-                    <select className="form-control" id="edit-priority">
-                        <option>1</option>
-                        <option>2</option>
-                        <option>3</option>
+                    <select className="update-todo-priority form-control mb-4" id="edit-priority">
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
                     </select>
                 <div className="form-group">
-                    <button className="btn btn-primary btn-lg">Save</button>
+                <div className="text-right">
+                    <button className="update-todo btn btn-primary btn-lg">Save</button>
+                </div>
                 </div>
                 </div>
             </div> 

@@ -8,14 +8,13 @@ class App extends Component {
   render() {
     return (
       <div 
-      className="container pt-2"
-      style={{minWidth: '350px'}}>
+      className="container pt-2">
         <div id="title">
           <h1 className="text-light">A Very Simple To-Do App:</h1>
-          <p className="test-light font-weight-light">I'll keep track of like, all your stuff...</p>
-          <hr className="my-4"></hr>
+          <p className="text-light font-weight-light">I'll keep track of like, all your stuff...</p>
+          <hr className="my-4 text-light"></hr>
         </div>
-       <div className="card-Deck">
+       <div className="row">
         <Add></Add>
         <View></View>
         </div>

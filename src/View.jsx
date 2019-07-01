@@ -9,7 +9,7 @@ class View extends Component {
         <div className='container'>
           <div className="card">
               <div className="card-header">View to-dos</div>
-              <ul className="list-group list-group-flush">
+              <ul className="list-group list-group-flush list-unstyled">
                 <Item></Item>
               </ul>
           </div>
