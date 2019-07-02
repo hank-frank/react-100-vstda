@@ -3,45 +3,47 @@ import Add from './Add.jsx';
 import View from './View.jsx';
 import Edit from "./Edit.jsx";
 
+let testData = [
+  {
+    todo: 'Shave back hair',
+    priority: 2,
+    completed: false,
+    id: 0,
+    editEnabled: false
+  },
+  {
+    todo: 'Get invading birds out of house',
+    priority: 1,
+    completed: false,
+    id: 1,
+    editEnabled: false
+  },
+  {
+    todo: 'Find 100 lost bitcoins',
+    priority: 3,
+    completed: false,
+    id: 2,
+    editEnabled: false
+  },
+  {
+    todo: 'Feed creature under the bed',
+    priority: 2,
+    completed: false,
+    id: 3,
+    editEnabled: false
+  },
+  {
+    todo: "Don't get eaten by a tiger today" ,
+    priority: 1,
+    completed: false,
+    id: 4,
+    editEnabled: false
+  }
+]
+
 class App extends Component {
 
-  const testData = [
-    {
-      todo: 'Shave back hair',
-      priority: 2,
-      completed: false,
-      id: 0,
-      editEnabled: false
-    },
-    {
-      todo: 'Get invading birds out of house',
-      priority: 1,
-      completed: false,
-      id: 1,
-      editEnabled: false
-    },
-    {
-      todo: 'Find 100 lost bitcoins',
-      priority: 3,
-      completed: false,
-      id: 2,
-      editEnabled: false
-    }
-    {
-      todo: 'Feed creature under the bed',
-      priority: 2,
-      completed: false,
-      id: 3,
-      editEnabled: false
-    }
-    {
-      todo: "Don't get eaten by a tiger today" ,
-      priority: 1,
-      completed: false,
-      id: 4,
-      editEnabled: false
-    }
-  ]
+ 
 
   render() {
     return (
