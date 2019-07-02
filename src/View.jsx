@@ -6,11 +6,12 @@ class View extends Component {
 
     render() {
       return (
-        <div className='container'>
-          <div className="card">
+        <div>
+          <div className="card w-100 rounded">
               <div className="card-header">View to-dos</div>
-              <ul className="list-group list-group-flush list-unstyled">
+              <ul className="list-group">
                 <Item></Item>
+                <Edit></Edit>
               </ul>
           </div>
         </div>

@@ -5,65 +5,109 @@ import Edit from "./Edit.jsx";
 
 let testData = [
   {
-    todo: 'Shave back hair',
+    title: 'Shave back hair',
     priority: 2,
     completed: false,
     id: 0,
-    editEnabled: false
+    isBeingEdited: false
   },
   {
-    todo: 'Get invading birds out of house',
+    title: 'Get invading birds out of house',
     priority: 1,
     completed: false,
     id: 1,
-    editEnabled: false
+    isBeingEdited: false
   },
   {
-    todo: 'Find 100 lost bitcoins',
+    title: 'Find 100 lost bitcoins',
     priority: 3,
     completed: false,
     id: 2,
-    editEnabled: false
+    isBeingEdited: false
   },
   {
-    todo: 'Feed creature under the bed',
+    title: 'Feed creature under the bed',
     priority: 2,
     completed: false,
     id: 3,
-    editEnabled: false
+    isBeingEdited: false
   },
   {
-    todo: "Don't get eaten by a tiger today" ,
+    title: "Don't get eaten by a tiger today" ,
     priority: 1,
     completed: false,
     id: 4,
-    editEnabled: false
+    isBeingEdited: false
   }
 ]
 
-class App extends Component {
+let toDoList = [];
+let id = 0; 
 
- 
+class App extends Component {
+  constructor(props) {
+    super(props);
+    
+    this.state = {
+      toDoList : [],
+    };
+
+    this.addToDoItem = this.addToDoItem.bind(this);
+  }
+
+
+  addToDoItem(title, priority) {
+    // newToDoItem =  {
+    //   //var's title and priority here are already holding the state of the value of the input elements, set as their values by the onChange in Add and passed in to this throuhg the props. of onClick of the button in the Add component. 
+    //   title: title,
+    //   priority: priority,
+    //   completed: false,
+    //   id: id,
+    //   isBeingEdited: false
+    // }
+    // //pushing the to-Do-item(not the state.toDoItem since its title/priority are already stateful vars) into the state. of the toDoList. 
+    // this.state.toDoList.push(newToDoItem);
+    // //Also useing .setState on the global toDoList to make its this.state refelet the current value of it from within this function/click. This is what makes the <Add> below have access to toDoList.title etc.
+    // this.setState({ toDoList: this.state.toDoList });
+    // id++; 
+    console.log (title);
+    console.log(priority);
+
+    // toDoList.push(newToDoItem);
+    // console.log(this.state.toDoList);
+    // console.log(toDoList);
+  }
 
   render() {
     return (
-      <div 
-      className="container pt-2">
+      <div className="container">
         <div id="title">
           <h1 className="text-light">A Very Simple To-Do App:</h1>
           <p className="text-light font-weight-light">I'll keep track of like, all your stuff...</p>
           <hr className="my-4 text-light"></hr>
         </div>
-       <div className="row">
-        <Add></Add>
-        <View></View>
+       <div className="d-flex justify-content-around">
+         <div className="p2 mr-4" style={{width: '40%'}}>
+           <Add
+             addToDoItem={ this.addToDoItem }
+           ></Add>
+         </div>
+         <div className="p2" style={{width: '60%'}}>
+           <View></View>
+         </div>
         </div>
-
-        {/* Will be removed just here to test */}
-        <Edit></Edit>
       </div>
     );
   }
 }
+{/* <div className="p2 w-25 mr-3" style={{width: '40%'}}>
+<div className="p2 w-75" style={{width: '60%'}}> */}
 
 export default App;
+
+
+// title={ toDoList.title }
+// priority={ toDoList.priority }
+// completed={ toDoList.completed }
+// id={ toDoList.id }
+// isBeingEdited={ toDoList.isBeingEdited }
