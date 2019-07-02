@@ -57,25 +57,23 @@ class App extends Component {
 
 
   addToDoItem(title, priority) {
-    // newToDoItem =  {
-    //   //var's title and priority here are already holding the state of the value of the input elements, set as their values by the onChange in Add and passed in to this throuhg the props. of onClick of the button in the Add component. 
-    //   title: title,
-    //   priority: priority,
-    //   completed: false,
-    //   id: id,
-    //   isBeingEdited: false
-    // }
-    // //pushing the to-Do-item(not the state.toDoItem since its title/priority are already stateful vars) into the state. of the toDoList. 
-    // this.state.toDoList.push(newToDoItem);
-    // //Also useing .setState on the global toDoList to make its this.state refelet the current value of it from within this function/click. This is what makes the <Add> below have access to toDoList.title etc.
-    // this.setState({ toDoList: this.state.toDoList });
-    // id++; 
     console.log (title);
     console.log(priority);
-
-    // toDoList.push(newToDoItem);
-    // console.log(this.state.toDoList);
-    // console.log(toDoList);
+    let newToDoItem =  {
+      //var's title and priority here are already holding the state of the value of the input elements, set as their values by the onChange in Add and passed in to this throuhg the props. of onClick of the button in the Add component. 
+      title: title,
+      priority: priority,
+      completed: false,
+      id: id,
+      isBeingEdited: false
+    }
+    //pushing the to-Do-item(not the state.toDoItem since its title/priority are already stateful vars) into the state. of the toDoList. 
+    this.state.toDoList.push(newToDoItem);
+    //Also useing .setState on the global toDoList to make its this.state refelet the current value of it from within this function/click. This is what makes the <Add> below have access to toDoList.title etc.
+    this.setState({ toDoList: this.state.toDoList });
+    id++; 
+    // logs with the correctly built object!!!!! id is incrememting too!!!
+    console.log(this.state.toDoList);
   }
 
   render() {
