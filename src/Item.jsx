@@ -13,10 +13,10 @@ class Item extends Component {
                 <input type='checkbox' className='float-left' />
                 <a className='edit-todo btn float-right text-success' 
                         name='edit-button'
-                        href='#'></a>
+                        href='#'>edit</a>
                  <a className='delete-todo btn float-right text-success' 
                         name='delete-button'
-                        href='#'></a>
+                        href='#'>delete</a>
                 </li>
             </div>
         );
