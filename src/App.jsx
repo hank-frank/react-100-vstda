@@ -53,12 +53,13 @@ class App extends Component {
     };
 
     this.addToDoItem = this.addToDoItem.bind(this);
+    // this.deleteToDoItem - this.deleteToDoItem.bind(this);
   }
 
 
   addToDoItem(title, priority) {
-    console.log (title);
-    console.log(priority);
+    // console.log (title);
+    // console.log(priority);
     let newToDoItem =  {
       //var's title and priority here are already holding the state of the value of the input elements, set as their values by the onChange in Add and passed in to this throuhg the props. of onClick of the button in the Add component. 
       title: title,
@@ -74,7 +75,12 @@ class App extends Component {
     id++; 
     // logs with the correctly built object!!!!! id is incrememting too!!!
     console.log(this.state.toDoList);
-  }
+  };
+
+  // deleteToDoItem(completed, id) {
+
+  //     console.log(completed);
+  // };
 
   render() {
     return (
@@ -91,7 +97,9 @@ class App extends Component {
            ></Add>
          </div>
          <div className="p2" style={{width: '60%'}}>
-           <View></View>
+           <View
+              toDoList={ this.state.toDoList }
+           ></View>
          </div>
         </div>
       </div>
