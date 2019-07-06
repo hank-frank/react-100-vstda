@@ -1,38 +1,45 @@
 import React, { Component } from 'react';
 import Item from './Item.jsx';
-import Edit from './Edit.jsx';
 
 class View extends Component {
   constructor( props ) {
     super( props ); 
+
+    this.state = {
+      toDoList : [],
+    };
+    this.clickEdit = this.clickEdit.bind(this)
 }
 
-
-//leaving off with toDoList not registering as an array where the error is that .map isn't working. a console.log of props and of toDoList are coming throuhg correclty.??
     render() {
       return (
         <div>
           <div className="card w-100 rounded">
               <div className="card-header">View to-dos</div>
               <ul className="list-group">
-                { this.toDoList.map(each => {
-                  console.log(toDoList);
+                { this.props.toDoList.map((each) => {
                   return (
-                    <Item title={ each.title } priority={ each.priority }>{ each.title }</Item>
+                    <Item 
+                      key={ each.id } 
+                      title={ each.title } 
+                      priority={ each.priority }
+                      completed={ each.completed }
+                      id={ each.id }
+                      isBeingEdited={ each.isBeingEdited }
+                      toDoList={ this.state.toDoList }
+                      clickEdit={ this.clickEdit }
+                      
+                      >{ each.title }</Item>
                   )
                 })
                 }
-                <Edit></Edit>
+                { console.log(this.props.toDoList )}
+                { console.log(clickEdit)}
               </ul>
           </div>
         </div>   
       );
     }
   }
-
-
-
-  // this is to be put into the onclick of the items edit button. Leaving it here already imported to remind how/what to call it. 
-  <Edit></Edit>
   
   export default View;

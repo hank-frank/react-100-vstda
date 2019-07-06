@@ -53,6 +53,7 @@ class App extends Component {
     };
 
     this.addToDoItem = this.addToDoItem.bind(this);
+    this.clickEdit = this.clickEdit.bind(this);
     // this.deleteToDoItem - this.deleteToDoItem.bind(this);
   }
 
@@ -74,13 +75,20 @@ class App extends Component {
     this.setState({ toDoList: this.state.toDoList });
     id++; 
     // logs with the correctly built object!!!!! id is incrememting too!!!
-    console.log(this.state.toDoList);
+    // console.log(this.state.toDoList);
   };
 
-  // deleteToDoItem(completed, id) {
-
-  //     console.log(completed);
-  // };
+  clickEdit(title) {
+    let tempItem = this.state.toDoList;
+    for (i = 0; i < tempItem.length; i++) {
+      if (tempItem[i].title == title) {
+        tempItem.isBeingEdited = true; 
+      }
+    }
+    this.setState({
+      toDoList: tempItem
+    })
+}
 
   render() {
     return (
@@ -99,6 +107,7 @@ class App extends Component {
          <div className="p2" style={{width: '60%'}}>
            <View
               toDoList={ this.state.toDoList }
+              clickEdit={ this.clickEdit }
            ></View>
          </div>
         </div>
@@ -110,10 +119,3 @@ class App extends Component {
 <div className="p2 w-75" style={{width: '60%'}}> */}
 
 export default App;
-
-
-// title={ toDoList.title }
-// priority={ toDoList.priority }
-// completed={ toDoList.completed }
-// id={ toDoList.id }
-// isBeingEdited={ toDoList.isBeingEdited }
