@@ -1,48 +1,12 @@
 import React, { Component } from 'react';
 import Add from './Add.jsx';
 import View from './View.jsx';
-import Edit from "./Edit.jsx";
 
-let testData = [
-  {
-    title: 'Shave back hair',
-    priority: 2,
-    completed: false,
-    id: 0,
-    isBeingEdited: false
-  },
-  {
-    title: 'Get invading birds out of house',
-    priority: 1,
-    completed: false,
-    id: 1,
-    isBeingEdited: false
-  },
-  {
-    title: 'Find 100 lost bitcoins',
-    priority: 3,
-    completed: false,
-    id: 2,
-    isBeingEdited: false
-  },
-  {
-    title: 'Feed creature under the bed',
-    priority: 2,
-    completed: false,
-    id: 3,
-    isBeingEdited: false
-  },
-  {
-    title: "Don't get eaten by a tiger today" ,
-    priority: 1,
-    completed: false,
-    id: 4,
-    isBeingEdited: false
-  }
-]
 
 let toDoList = [];
-let id = 0; 
+let id = 0;
+
+
 
 class App extends Component {
   constructor(props) {
@@ -51,13 +15,14 @@ class App extends Component {
     this.state = {
       toDoList : [],
     };
-
+    
     this.addToDoItem = this.addToDoItem.bind(this);
     this.clickEdit = this.clickEdit.bind(this);
+    this.saveEdit = this.saveEdit.bind(this);
     // this.deleteToDoItem - this.deleteToDoItem.bind(this);
   }
-
-
+  
+  
   addToDoItem(title, priority) {
     // console.log (title);
     // console.log(priority);
@@ -72,22 +37,47 @@ class App extends Component {
     //pushing the to-Do-item(not the state.toDoItem since its title/priority are already stateful vars) into the state. of the toDoList. 
     this.state.toDoList.push(newToDoItem);
     //Also useing .setState on the global toDoList to make its this.state refelet the current value of it from within this function/click. This is what makes the <Add> below have access to toDoList.title etc.
-    this.setState({ toDoList: this.state.toDoList });
+    this.setState({ 
+      toDoList: this.state.toDoList 
+    });
     id++; 
-    // logs with the correctly built object!!!!! id is incrememting too!!!
-    // console.log(this.state.toDoList);
   };
 
-  clickEdit(title) {
+  
+  clickEdit( id ) {
+    console.log("clickEdit Test id:" + id)
     let tempItem = this.state.toDoList;
-    for (i = 0; i < tempItem.length; i++) {
-      if (tempItem[i].title == title) {
-        tempItem.isBeingEdited = true; 
+    console.log(tempItem)
+    //for each item of the array(each to do item) if the id matches on the list and with an id in the toDoList change the tempitems isBeingEdited to true
+    for (let i = 0; i < tempItem.length; i++) {
+      console.log(i)
+      if (tempItem[i].id == id) { 
+        tempItem[i].isBeingEdited = true; 
       }
     }
+    //then set the state of the toDoLIst to be the tempItem version with an item now showing it's isBeing edited as true. 
     this.setState({
       toDoList: tempItem
-    })
+    });
+  }
+  
+  saveEdit( id, title, priority ) {
+    console.log("saveEdit Test: " + "id: " + id + " title: " + title + " prioroty: " + priority );
+    
+    let tempSaveItem = this.state.toDoList;
+    console.log(tempSaveItem);
+    
+    for (let i = 0; i < tempSaveItem.length; i++) {
+      if (tempSaveItem[i].id == id) { 
+          tempSaveItem[i].isBeingEdited = false;
+          tempSaveItem[i].title = title;
+          tempSaveItem[i].priority = priority;
+        }
+    }
+   
+    this.setState({
+      toDoList: tempSaveItem
+    });
 }
 
   render() {
@@ -102,13 +92,14 @@ class App extends Component {
          <div className="p2 mr-4" style={{width: '40%'}}>
            <Add
              addToDoItem={ this.addToDoItem }
-           ></Add>
+             ></Add>
          </div>
          <div className="p2" style={{width: '60%'}}>
            <View
               toDoList={ this.state.toDoList }
               clickEdit={ this.clickEdit }
-           ></View>
+              saveEdit={ this.saveEdit }
+              ></View>
          </div>
         </div>
       </div>
@@ -119,3 +110,41 @@ class App extends Component {
 <div className="p2 w-75" style={{width: '60%'}}> */}
 
 export default App;
+
+// let testData = [
+//   {
+//     title: 'Shave back hair',
+//     priority: 2,
+//     completed: false,
+//     id: 0,
+//     isBeingEdited: false
+//   },
+//   {
+//     title: 'Get invading birds out of house',
+//     priority: 1,
+//     completed: false,
+//     id: 1,
+//     isBeingEdited: false
+//   },
+//   {
+//     title: 'Find 100 lost bitcoins',
+//     priority: 3,
+//     completed: false,
+//     id: 2,
+//     isBeingEdited: false
+//   },
+//   {
+//     title: 'Feed creature under the bed',
+//     priority: 2,
+//     completed: false,
+//     id: 3,
+//     isBeingEdited: false
+//   },
+//   {
+//     title: "Don't get eaten by a tiger today" ,
+//     priority: 1,
+//     completed: false,
+//     id: 4,
+//     isBeingEdited: false
+//   }
+// ]

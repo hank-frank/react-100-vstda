@@ -8,7 +8,6 @@ class View extends Component {
     this.state = {
       toDoList : [],
     };
-    this.clickEdit = this.clickEdit.bind(this)
 }
 
     render() {
@@ -27,14 +26,14 @@ class View extends Component {
                       id={ each.id }
                       isBeingEdited={ each.isBeingEdited }
                       toDoList={ this.state.toDoList }
-                      clickEdit={ this.clickEdit }
-                      
+                      clickEdit={ this.props.clickEdit }
+                      saveEdit={ this.props.saveEdit }
                       >{ each.title }</Item>
                   )
                 })
                 }
-                { console.log(this.props.toDoList )}
-                { console.log(clickEdit)}
+                { console.log(this.state.toDoList) }
+                { console.log(this.props.clickEdit) }
               </ul>
           </div>
         </div>   
