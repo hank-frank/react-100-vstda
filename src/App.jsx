@@ -2,11 +2,8 @@ import React, { Component } from 'react';
 import Add from './Add.jsx';
 import View from './View.jsx';
 
-
 let toDoList = [];
 let id = 0;
-
-
 
 class App extends Component {
   constructor(props) {
@@ -19,9 +16,9 @@ class App extends Component {
     this.addToDoItem = this.addToDoItem.bind(this);
     this.clickEdit = this.clickEdit.bind(this);
     this.saveEdit = this.saveEdit.bind(this);
-    // this.deleteToDoItem - this.deleteToDoItem.bind(this);
+    this.itemCompleted = this.itemCompleted.bind(this);
+    this.deleteItem = this.deleteItem.bind(this);
   }
-  
   
   addToDoItem(title, priority) {
     // console.log (title);
@@ -40,6 +37,7 @@ class App extends Component {
     this.setState({ 
       toDoList: this.state.toDoList 
     });
+    console.log("test from add" + this.state.toDoList);
     id++; 
   };
 
@@ -47,10 +45,8 @@ class App extends Component {
   clickEdit( id ) {
     console.log("clickEdit Test id:" + id)
     let tempItem = this.state.toDoList;
-    console.log(tempItem)
     //for each item of the array(each to do item) if the id matches on the list and with an id in the toDoList change the tempitems isBeingEdited to true
     for (let i = 0; i < tempItem.length; i++) {
-      console.log(i)
       if (tempItem[i].id == id) { 
         tempItem[i].isBeingEdited = true; 
       }
@@ -65,8 +61,6 @@ class App extends Component {
     console.log("saveEdit Test: " + "id: " + id + " title: " + title + " prioroty: " + priority );
     
     let tempSaveItem = this.state.toDoList;
-    console.log(tempSaveItem);
-    
     for (let i = 0; i < tempSaveItem.length; i++) {
       if (tempSaveItem[i].id == id) { 
           tempSaveItem[i].isBeingEdited = false;
@@ -80,11 +74,41 @@ class App extends Component {
     });
 }
 
+itemCompleted( id ) {
+  let tempCompleteItem = this.state.toDoList;
+    // console.log(tempCompleteItem)
+    for (let i = 0; i < tempCompleteItem.length; i++) {
+      // console.log(i)
+      if (tempCompleteItem[i].id == id) { 
+        tempCompleteItem[i].completed = !tempCompleteItem[i].completed; 
+      }
+    }
+
+  this.setState ({
+    toDoList: tempCompleteItem
+  })
+}
+
+deleteItem( id ) {
+  console.log("delete item test: " + id )
+  let tempDelete = this.state.toDoList.filter((currentItem) => {
+    if (currentItem.id !== id) {
+      return currentItem;
+    }
+  });
+  // console.log(tempDelete);
+  this.setState({ 
+    toDoList: tempDelete 
+  });
+  //this is the console.log from within this funciton that is showing the incorrect number of objects in the toDoList array. 
+  console.log("toDoList from delete: " + this.state.toDoList);
+}
+
   render() {
     return (
       <div className="container">
         <div id="title">
-          <h1 className="text-light">A Very Simple To-Do App:</h1>
+          <h1 className="text-light mt-3">A Very Simple To-Do App:</h1>
           <p className="text-light font-weight-light">I'll keep track of like, all your stuff...</p>
           <hr className="my-4 text-light"></hr>
         </div>
@@ -94,11 +118,13 @@ class App extends Component {
              addToDoItem={ this.addToDoItem }
              ></Add>
          </div>
-         <div className="p2" style={{width: '60%'}}>
+         <div className="m-0" style={{width: '60%'}}>
            <View
               toDoList={ this.state.toDoList }
               clickEdit={ this.clickEdit }
               saveEdit={ this.saveEdit }
+              itemCompleted={ this.itemCompleted }
+              deleteItem={ this.deleteItem }
               ></View>
          </div>
         </div>
@@ -106,45 +132,5 @@ class App extends Component {
     );
   }
 }
-{/* <div className="p2 w-25 mr-3" style={{width: '40%'}}>
-<div className="p2 w-75" style={{width: '60%'}}> */}
 
 export default App;
-
-// let testData = [
-//   {
-//     title: 'Shave back hair',
-//     priority: 2,
-//     completed: false,
-//     id: 0,
-//     isBeingEdited: false
-//   },
-//   {
-//     title: 'Get invading birds out of house',
-//     priority: 1,
-//     completed: false,
-//     id: 1,
-//     isBeingEdited: false
-//   },
-//   {
-//     title: 'Find 100 lost bitcoins',
-//     priority: 3,
-//     completed: false,
-//     id: 2,
-//     isBeingEdited: false
-//   },
-//   {
-//     title: 'Feed creature under the bed',
-//     priority: 2,
-//     completed: false,
-//     id: 3,
-//     isBeingEdited: false
-//   },
-//   {
-//     title: "Don't get eaten by a tiger today" ,
-//     priority: 1,
-//     completed: false,
-//     id: 4,
-//     isBeingEdited: false
-//   }
-// ]

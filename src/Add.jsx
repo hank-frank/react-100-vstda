@@ -56,7 +56,7 @@ onChange(e) {
            <div className="card-footer">
             <div className="text-right">
               {/* this onClick is exporting the state/properties of title/priority that are captured above w/ the onChange and set as the value so that they are accessable with in the main APP class to be passed into the addToDoItem function this.props is needed apparently to pass the properties, otherwise they weren't getting through. */}
-            <button className="btn btn-primary btn-block rounded" onClick={() => this.props.addToDoItem(this.state.title, this.state.priority)}>Add</button>
+            <button className="create-todo btn btn-primary btn-block rounded" onClick={() => this.props.addToDoItem(this.state.title, this.state.priority)}>Add</button>
             
             </div>
             </div>

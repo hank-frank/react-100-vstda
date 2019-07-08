@@ -15,6 +15,7 @@ class Item extends Component {
         this.setPriorityColor = this.setPriorityColor.bind(this)
         this.displayEdit = this.displayEdit.bind(this)
         this.displayNormalItem = this.displayNormalItem.bind(this)
+        this.completedStrikethrough = this.completedStrikethrough.bind(this)
     }
 
     onChange(e) {
@@ -25,13 +26,13 @@ class Item extends Component {
     console.log(priority)
        if (priority == 1) {
            console.log("priority: 1")
-           return "list-group-item-danger"
+           return "list-group-item-success"
         } else if (priority == 2) {
             console.log("priority: 2")
            return "list-group-item-warning"
         } else if (priority == 3) {
             console.log("priority: 3")
-          return  "list-group-item-success"
+          return  "list-group-item-danger"
            }
        }
 
@@ -52,40 +53,56 @@ class Item extends Component {
         }
     }
 
+    completedStrikethrough ( completed ) {
+        console.log("completed: " + completed);
+        if ( completed ) {
+            return "line-through";
+        } else {
+            "none"
+        }
+    }
+
     render() {
         return (
-        <div className="container"> 
-        <div className="m-0"
+        <div className="container m-0 px-0"> 
+        <div className="mx-0"
              name="normalEdit"
              style={{ display: this.displayNormalItem(this.props.isBeingEdited) }}>
-                 {/* { display: this.displayNormalItem(this.props.isBeingEdited) } */}
             <li id="alert"
                 name={ this.props.priority }
-                className={ `${ this.setPriorityColor(this.props.priority) } clearfix align-middle` }>
-                    <input type='checkbox'
-                        // checked={  }
+                className={ `${ this.setPriorityColor(this.props.priority) } clearfix align-middle m-0` }>
+                    <input 
+                        type='checkbox'
                         className='float-left m-2 align-middle'
-                        // onClick={  }
-                        name="done" />
-                        <div className='float-left m-2 align-middle' id="display-text">{ this.props.title }</div>
-                        <a className='delete-todo btn float-right text-success m-2 align-middle' 
-                            onChange={ this.onChange } 
-                            name='deleteButton'
-                            value={ this.state.deleteButton }
-                            href='#'>delete</a>
+                        name="done"
+                        onChange={() => this.props.itemCompleted( this.props.id )}/>
+                        <div 
+                            className='float-left m-2 align-middle' 
+                            id="display-text"
+                            style={{ textDecoration: this.completedStrikethrough( this.props.completed ) }}
+                            >{ this.props.title }
+                        </div>
+                        <a className='delete-todo btn float-right text-success m-2 align-middle'
+        //here is the onClick of where the deleteItem function is being called. 
+                            onClick={ () => this.props.deleteItem( this.props.id ) }
+                            name='delete-todo'
+                            href='#'
+                            style={{ cursor: 'pointer' }}>
+                                <i className="fas fa-trash-alt" style={{ color: '#951717' }}></i>
+                        </a>
                         <a className='edit-todo btn float-right text-success m-2 align-middle'
-                            onClick={ () => this.props.clickEdit(this.props.id) }  //leaving off here. clickEdit isn't making it App => View => Item yet... props not being passed properly. pick up here. 
+                            onClick={ () => this.props.clickEdit( this.props.id ) } 
                             name='editButton'
-                            // value={ this.state.editButton }
-                            href='#'>edit</a>
+                            href='#'>
+                                <i className="fas fa-edit" style={{ color: '#42403C' }} ></i>
+                        </a>
                 </li>
             </div>
 
         <div className="m-0"
             name="editItem"
             style={{ display: this.displayEdit(this.props.isBeingEdited) }}>
-                {/* { display: this.displayEdit(this.props.isBeingEdited) } */}
-            <li id="alert"
+            <li id="alert m-0"
                 name={ this.props.priority }
                 className={ `${ this.setPriorityColor(this.props.priority) } clearfix align-middle` }>
                 <div className="form-group m-4">
@@ -126,4 +143,3 @@ class Item extends Component {
 }
       
   export default Item;
-
