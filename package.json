@@ -5,10 +5,10 @@
   "main": "server/index.js",
   "scripts": {
     "build": "npm run less && webpack",
-    "start": "npm run build && node server/index.js",
+    "start": "webpack && node server/index.js",
     "less": "lessc src/css/style.less dist/css/style.css",
     "lint": "eslint .",
-    "test": "npm run build && mocha test/.setup.js test/*.spec.js --exit"
+    "test": "webpack && mocha test/.setup.js test/*.spec.js --exit"
   },
   "dependencies": {
     "axios": "^0.16.1",
