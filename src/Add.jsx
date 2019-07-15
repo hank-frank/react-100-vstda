@@ -26,7 +26,7 @@ onChange(e) {
           </div>
         <div className="card-body">
             <div className="form-group">
-                <label for="title">A new to-do</label>
+                <label htmlFor="title">A new to-do</label>
                 <textarea 
                   name="title"
                   className="create-todo-text form-control" 
@@ -39,7 +39,7 @@ onChange(e) {
                   ></textarea>
             </div>
             <div className="form-group">
-                <label for="priority">Priority:</label>
+                <label htmlFor="priority">Priority:</label>
                 <select 
                   className="create-todo-priority form-control" 
                   id="priority"

@@ -106,7 +106,7 @@ class Item extends Component {
                 name={ this.props.priority }
                 className={ `${ this.setPriorityColor(this.props.priority) } clearfix align-middle` }>
                 <div className="form-group m-4">
-                   <label for="comment">Description:</label>
+                   <label htmlFor="comment">Description:</label>
                    <textarea 
                         className="update-todo-text form-control" 
                         rows="5" id="comment" 
@@ -116,7 +116,7 @@ class Item extends Component {
                         value={ this.state.title }></textarea>
                 </div>
                 <div className="form-group m-4">
-                    <label for="priority">Priority:</label>
+                    <label htmlFor="priority">Priority:</label>
                     <select 
                         className="update-todo-priority form-control mb-4" 
                         id="priority"
