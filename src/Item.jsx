@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 
-
 class Item extends Component {
     constructor( props ) {
         super( props );
@@ -23,21 +22,16 @@ class Item extends Component {
       }
 
     setPriorityColor(priority) {
-    console.log(priority)
        if (priority == 1) {
-           console.log("priority: 1")
            return "list-group-item-success"
         } else if (priority == 2) {
-            console.log("priority: 2")
            return "list-group-item-warning"
         } else if (priority == 3) {
-            console.log("priority: 3")
           return  "list-group-item-danger"
            }
        }
 
     displayEdit( isBeingEdited ) {
-        console.log( isBeingEdited )
         if ( isBeingEdited ) {
             return "block";
         } else {
@@ -54,7 +48,6 @@ class Item extends Component {
     }
 
     completedStrikethrough ( completed ) {
-        console.log("completed: " + completed);
         if ( completed ) {
             return "line-through";
         } else {
@@ -83,7 +76,6 @@ class Item extends Component {
                             >{ this.props.title }
                         </div>
                         <a className='delete-todo btn float-right text-success m-2 align-middle'
-        //here is the onClick of where the deleteItem function is being called. 
                             onClick={ () => this.props.deleteItem( this.props.id ) }
                             name='delete-todo'
                             href='#'
@@ -96,9 +88,8 @@ class Item extends Component {
                             href='#'>
                                 <i className="fas fa-edit" style={{ color: '#42403C' }} ></i>
                         </a>
-                </li>
-            </div>
-
+            </li>
+        </div>
         <div className="m-0"
             name="editItem"
             style={{ display: this.displayEdit(this.props.isBeingEdited) }}>
